@@ -1,6 +1,6 @@
 import React from "react";
 import bg from "../images/bg.svg";
-import SearchBar from "../components/SearchBar";
+import SearchBar from "../components/SearchBar copy";
 
 const LandingPage = () => {
   return (

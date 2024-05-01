@@ -6,6 +6,7 @@ import PublicRoute from "./components/PublicRoute";
 import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LandingPage from "./views/LandingPage";
+import ProductsP from "./views/Products";
 
 function App() {
   return (
@@ -23,7 +24,8 @@ function App() {
                 </PublicRoute>
               }
             />
-            <Route path="/" element={<LandingPage />} />
+            <Route path="/" element={<LandingPage />} />{" "}
+            <Route path="/products" element={<ProductsP />} />
           </Routes>
         </div>
         <Footer />
