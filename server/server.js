@@ -2,6 +2,7 @@ const { PORT } = require("./config/settings");
 const express = require("express");
 const cors = require('cors')
 const app = express();
+const path = require("path");
 const cookieParser = require('cookie-parser'); // to be able to read cookies
 
 app.use(cookieParser());
@@ -17,6 +18,8 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 require("./config/mongoose.config");
+app.use("/uploads", express.static(path.join(__dirname, "uploads")));
+
 
 const UserRouter = require("./routes/user.routes");
 app.use("/api/auth", UserRouter);
