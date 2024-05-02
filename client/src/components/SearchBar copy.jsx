@@ -55,14 +55,15 @@ function SearchBar() {
         <div className="absolute mt-2 w-full bg-white shadow-md border border-gray-200 rounded-lg">
           {searchResults.map((product) => (
             <a
+              target="_blank"
               href={product.url}
               key={product._id}
-              className="p-2 hover:bg-gray-100 cursor-pointer"
+              className="p-2 hover:text-slate-800 hover:underline hover:border border-black cursor-pointer text-black block"
               onClick={() => {
                 setSearchTerm("");
               }}
             >
-              <p className="text-gray-800">{product.title}</p>
+              {product.title}
             </a>
           ))}
         </div>
