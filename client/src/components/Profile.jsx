@@ -83,26 +83,25 @@ const Profile = () => {
         Perfil de Usuario
       </h1>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {user &&
-          user.profile && ( // Verifica que user y user.profile estén definidos
-            <div className="flex items-center justify-center md:justify-start">
-              <Avatar img={user.profile} size="xl" alt="Avatar" rounded />
-              <input
-                type="file"
-                id="profileImage"
-                name="profileImage"
-                accept="image/*"
-                onChange={handleUploadImage}
-                className="hidden"
-              />
-              <label
-                htmlFor="profileImage"
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer ml-2 md:ml-0"
-              >
-                Importar Imagen
-              </label>
-            </div>
-          )}
+        {user && ( // Verifica que user y user.profile estén definidos
+          <div className="flex items-center justify-center md:justify-start">
+            <Avatar img={user.profile} size="xl" alt="Avatar" rounded />
+            <input
+              type="file"
+              id="profileImage"
+              name="profileImage"
+              accept="image/*"
+              onChange={handleUploadImage}
+              className="hidden"
+            />
+            <label
+              htmlFor="profileImage"
+              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer ml-2 md:ml-0"
+            >
+              Importar Imagen
+            </label>
+          </div>
+        )}
         {user && (
           <div className="bg-white rounded-lg shadow-md p-4">
             <div className="mb-4">
