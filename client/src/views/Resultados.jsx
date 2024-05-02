@@ -4,6 +4,7 @@ import NavBarra from '../components/Navbar'
 import MyFooter from '../components/Footer'
 import axios from 'axios'
 import ProductsP from '../components/Products'
+import SearchBar from '../components/SearchBar'
 const Resultados = () => {
     const { search } = useParams()
     const [searchResults, setSearchResults] = useState([])
@@ -19,7 +20,6 @@ const Resultados = () => {
                 setError(error)
                 setloading(false)
             })
-
     }
     ), []
 
@@ -47,8 +47,8 @@ const Resultados = () => {
 			'>Obtuvimos los siguientes resultados con tu busqueda</h1>
                     <div className=' grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 '>
                         {searchResults.map((product) => (
-                            <div key={product.price}>
-                                <ProductsP key={product.title} image_url={product.image_url} url={product.url} title={product.title} price={product.price}></ProductsP>
+                            <div key={product._id}>
+                                <ProductsP key={product._id} image_url={product.image_url} url={product.url} title={product.title} price={product.price} id={product._id}></ProductsP>
                             </div>
                         ))}
                     </div>

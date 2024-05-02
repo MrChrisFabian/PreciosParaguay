@@ -29,17 +29,17 @@ exports.addToWishList = async (req, res) => {
 
 // Obtener la lista de deseos del usuario
 exports.getWishList = async (req, res) => {
-    const userId = req.params.userId;
-  
-    try {
-        const wishList = await WishList.findOne({ userId }).populate('products');
-        console.log("Wishlist:", wishList);
-      res.json(wishList);
-    } catch (err) {
-      console.error("Error getting wishlist:", err);
-      res.status(500).json({ message: err.message });
-    }
-  };
+  const userId = req.params.userId;
+
+  try {
+    const wishList = await WishList.findOne({ userId }).populate('products');
+    console.log("Wishlist:", wishList);
+    res.json(wishList);
+  } catch (err) {
+    console.error("Error getting wishlist:", err);
+    res.status(500).json({ message: err.message });
+  }
+};
 
 // Eliminar un producto de la lista de deseos del usuario
 exports.removeFromWishList = async (req, res) => {
@@ -56,7 +56,7 @@ exports.removeFromWishList = async (req, res) => {
     }
 
     wishList.products = wishList.products.filter(
-      (product) => product.toString() !== productId
+      (product) => product && product.toString() !== productId
     );
 
     await wishList.save();

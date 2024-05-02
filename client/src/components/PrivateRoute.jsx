@@ -2,7 +2,7 @@ import { Navigate } from "react-router-dom";
 import {UserContext} from '../context/UserContext';
 import { useContext } from "react";
 
-const PublicRoute = (props) => {
+const PrivateRoute = (props) => {
     const { redirectPath = "/login", children } = props;
     const { user } = useContext(UserContext);
 
@@ -10,4 +10,4 @@ const PublicRoute = (props) => {
 };
 
 
-export default PublicRoute
+export default PrivateRoute

@@ -4,9 +4,9 @@ import { UserProvider } from "./context/UserContext";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import LandingPage from "./views/LandingPage";
-import ProductsP from "./views/Products";
 import Profile from "./components/Profile";
 import WishlistView from "./views/WishlistView";
+import Resultados from "./views/Resultados";
 
 function App() {
   return (
@@ -21,8 +21,15 @@ function App() {
           }
         />
         <Route path="/" element={<LandingPage />} />
-        <Route path="/products" element={<ProductsP />} />
         <Route path="/busqueda/:search" element={<Resultados />} />
+        <Route path="/profile" element={
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        } />
+        <Route path="/wishlist" element={<PrivateRoute>
+          <WishlistView />
+        </PrivateRoute>} />
       </Routes>
     </UserProvider>
   );
