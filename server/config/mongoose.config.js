@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const db_name = "base_de_datos_de_prueba";
+const db_name = "items";
 
 mongoose.connect(`mongodb://localhost/${db_name}`)
     .then(() => { console.log(`Conexión Establecida con el servidor ${db_name}`) })

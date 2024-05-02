@@ -6,7 +6,7 @@ import { useNavigate } from "react-router-dom";
 import { RiUserLine, RiLogoutBoxRLine } from "react-icons/ri"; // Importa los iconos que necesitas
 import Logo from "../images/Logo.svg";
 
-const Component = () => {
+const NavBarra = () => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
 
@@ -28,21 +28,19 @@ const Component = () => {
   };
 
   return (
-    <Navbar rounded className="bg-slate-400 shadow-lg">
-      <Navbar.Brand href="">
+    <Navbar className="rounded-b-lg mx-8 bg-slate-400 shadow-xl">
+      <Navbar.Brand href="/">
         <img src={Logo} className="mr-3 h-12 sm:h-16" alt="Logo" />
       </Navbar.Brand>
       <ul className="flex justify-center gap-6 items-center">
-        <Navbar.Link href="#" className="">
-          Home
-        </Navbar.Link>
+
         <Navbar.Link href="#" className="">
           About
         </Navbar.Link>
         <Dropdown
           arrowIcon={false}
           inline
-          label={<Avatar alt="User settings" img="" rounded className="mr-2" />}
+          label={<Avatar alt="User settings" rounded className="mr-2" />}
         >
           {user ? (
             <>
@@ -77,4 +75,4 @@ const Component = () => {
   );
 };
 
-export default Component;
+export default NavBarra;
