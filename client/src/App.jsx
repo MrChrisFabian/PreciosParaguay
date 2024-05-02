@@ -8,6 +8,7 @@ import Navbar from "./components/Navbar";
 import LandingPage from "./views/LandingPage";
 import ProductsP from "./views/Products";
 import Profile from "./components/Profile";
+import WishlistView from "./views/WishlistView";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
             <Route path="/" element={<LandingPage />} />{" "}
             <Route path="/products" element={<ProductsP />} />
             <Route path="/profile" element={<Profile />} />
+            <Route path="/wishlist" element={<WishlistView />} />
           </Routes>
         </div>
         <Footer />

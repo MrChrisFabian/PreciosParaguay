@@ -24,4 +24,7 @@ app.use("/api/auth", UserRouter);
 const AllMyProductRoutes = require("./routes/product.routes");
 AllMyProductRoutes(app);
 
+const wishlistRoutes = require('./routes/wishList.routes');
+app.use('/api', wishlistRoutes);
+
 app.listen(PORT, () => console.log(`Listening on port: ${PORT}`));

@@ -1,9 +1,11 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import axios from "axios";
 import { Link } from "react-router-dom";
+import { UserContext } from "../context/UserContext";
 
 const ProductsP = () => {
   const [products, setProducts] = useState([]);
+  const { getUserId } = useContext(UserContext); // Obtiene la función getUserId del contexto de usuario
 
   useEffect(() => {
     const fetchProducts = async () => {
@@ -16,6 +18,25 @@ const ProductsP = () => {
     };
     fetchProducts();
   }, []);
+
+  const addToWishList = async (productId) => {
+    const userId = getUserId(); // Obtiene el ID del usuario del contexto
+
+    if (!userId) {
+      console.error("User ID not found");
+      return;
+    }
+
+    try {
+      await axios.post("http://localhost:8000/api/wishlist/add", {
+        userId: userId,
+        productId: productId,
+      });
+      console.log("");
+    } catch (error) {
+      console.error("Error adding to wishlist:", error);
+    }
+  };
 
   return (
     <section className="text-gray-600 body-font bg-white">
@@ -45,9 +66,12 @@ const ProductsP = () => {
                   <span className="tracking-wider text-gray-900">
                     {product.price} Gs
                   </span>
-                  <div className="ml-auto">
-                    {/* Componente de añadir al carrito */}
-                  </div>
+                  <button
+                    onClick={() => addToWishList(product._id)}
+                    className="ml-auto text-gray-500 hover:text-gray-700"
+                  >
+                    Add to Wishlist
+                  </button>
                 </div>
               </div>
             </div>
