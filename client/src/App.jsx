@@ -1,13 +1,12 @@
 import { Routes, Route } from "react-router-dom";
 import LoginRegister from "./views/LoginRegister";
 import { UserProvider } from "./context/UserContext";
-import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import LandingPage from "./views/LandingPage";
 import Profile from "./components/Profile";
 import WishlistView from "./views/WishlistView";
 import Resultados from "./views/Resultados";
-
+import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <UserProvider>
@@ -27,9 +26,11 @@ function App() {
             <Profile />
           </PrivateRoute>
         } />
-        <Route path="/wishlist" element={<PrivateRoute>
-          <WishlistView />
-        </PrivateRoute>} />
+        <Route path="/wishlist" element={
+          <PrivateRoute>
+            <WishlistView />
+          </PrivateRoute>
+        } />
       </Routes>
     </UserProvider>
   );
