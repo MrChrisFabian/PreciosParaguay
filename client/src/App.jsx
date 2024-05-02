@@ -10,28 +10,30 @@ import PrivateRoute from "./components/PrivateRoute";
 function App() {
   return (
     <UserProvider>
-      <Routes>
-        <Route
-          path="/login"
-          element={
-            <PublicRoute>
-              <LoginRegister />
-            </PublicRoute>
-          }
-        />
-        <Route path="/" element={<LandingPage />} />
-        <Route path="/busqueda/:search" element={<Resultados />} />
-        <Route path="/profile" element={
-          <PrivateRoute>
-            <Profile />
-          </PrivateRoute>
-        } />
-        <Route path="/wishlist" element={
-          <PrivateRoute>
-            <WishlistView />
-          </PrivateRoute>
-        } />
-      </Routes>
+      <div>
+        <Routes>
+          <Route
+            path="/login"
+            element={
+              <PublicRoute>
+                <LoginRegister />
+              </PublicRoute>
+            }
+          />
+          <Route path="/" element={<LandingPage />} />
+          <Route path="/busqueda/:search" element={<Resultados />} />
+          <Route path="/profile" element={
+            <PrivateRoute>
+              <Profile />
+            </PrivateRoute>
+          } />
+          <Route path="/wishlist" element={
+            <PrivateRoute>
+              <WishlistView />
+            </PrivateRoute>
+          } />
+        </Routes>
+      </div>
     </UserProvider>
   );
 }

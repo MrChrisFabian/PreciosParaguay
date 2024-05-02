@@ -45,7 +45,7 @@ const WishlistView = () => {
   return (
     <>
       <NavBarra />
-      <section className="text-gray-600 body-font bg-white">
+      <section className="text-gray-600 body-font bg-white ">
         <div className="container px-5 py-24 mx-auto flex">
           <div className="w-full p-4">
             <h2 className="text-3xl font-bold mb-4">Wishlist</h2>
@@ -75,6 +75,10 @@ const WishlistView = () => {
           </div>
         </div>
       </section>
+
+      <div className="fixed bottom-0 w-full">
+        <MyFooter />
+      </div>
     </>
   );
 };

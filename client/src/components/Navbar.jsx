@@ -27,12 +27,12 @@ const NavBarra = () => {
   };
 
   return (
-    <Navbar className="rounded-b-lg mx-8 bg-slate-400 shadow-xl">
+    <Navbar className="bg-slate-800 shadow-xl">
       <Navbar.Brand href="/">
         <img src={Logo} className="mr-3 h-12 sm:h-16" alt="Logo" />
       </Navbar.Brand>
-      <ul className="flex justify-center gap-6 items-center">
-        <Navbar.Link href="#" className="">
+      <ul className="flex justify-center gap-6 items-center ">
+        <Navbar.Link href="https://github.com/MrChrisFabian/PreciosParaguay" target="_blank" className="text-neutral-100 text-lg md:text-xl ">
           About
         </Navbar.Link>
         {user ? (

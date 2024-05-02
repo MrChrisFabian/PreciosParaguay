@@ -60,7 +60,7 @@ function SearchBar() {
       <div className={`${clicked ? 'hidden' : ''} max-h-screen overflow-y-auto`}>
         {searchResults.length > 0 && (
           <div className="absolute mt-2 bg-white shadow-md border border-gray-200 rounded-lg">
-            {searchResults.map((product) => (
+            {searchResults.slice(0,6).map((product) => (
               <a
                 target="_blank"
                 href={product.url}

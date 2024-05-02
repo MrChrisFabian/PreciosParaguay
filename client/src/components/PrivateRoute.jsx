@@ -22,8 +22,4 @@ const PrivateRoute = ({ children, redirectPath = "/login" }) => {
   return user ? children : <Navigate to={redirectPath} replace />;
 };
 
-<<<<<<< HEAD
 export default PrivateRoute;
-=======
-export default PrivateRoute;
->>>>>>> 68f2bac48ef29361c20d495b7f61617ad2f14a40

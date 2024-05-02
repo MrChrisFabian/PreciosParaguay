@@ -13,7 +13,7 @@ const LandingPage = () => {
 
             {/* Contains text and the searchbar */}
             <article className="my-10 mx-14 flex flex-col items-center content-center">
-              <h1 className="text-3xl md:text-5xl font-bold text-center mb-4 text-blue-500">
+              <h1 className="text-3xl md:text-5xl  font-bold text-center mb-4 p-2 bg-gradient-to-r from-slate-600 via-slate-500 to-slate-600 text-transparent bg-clip-text">
                 Encuentra todo en un solo lugar
               </h1>
               <p className="text-lg text-center mb-6 text-black">
@@ -25,7 +25,7 @@ const LandingPage = () => {
 
             {/* Ilustration */}
             <section className="my-11">
-              <img src={bg} alt="Illustration of costumers" />
+              <img src='/public/images/ecommer.jpg' alt="Illustration of costumers" width='800' />
             </section>
 
           </div>

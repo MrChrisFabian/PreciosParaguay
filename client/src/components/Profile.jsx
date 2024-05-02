@@ -2,9 +2,11 @@ import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import { Avatar } from "flowbite-react"; // Importa el componente Avatar
-
+import NavBarra from "./Navbar";
+import MyFooter from "./Footer";
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
+  const [imageurl, setImageurl] = useState(user.profile);
   const [editing, setEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({
     ...user,
@@ -78,155 +80,155 @@ const Profile = () => {
   };
 
   return (
-    <div className="container mx-auto mt-8">
-      <h1 className="text-2xl font-bold mb-4 text-blue-900 text-center">
-        Perfil de Usuario
-      </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-2">
-        {user && ( // Verifica que user y user.profile estén definidos
-          <div className="flex items-center justify-center md:justify-start">
-            <Avatar img={user.profile} size="xl" alt="Avatar" rounded />
-            <input
-              type="file"
-              id="profileImage"
-              name="profileImage"
-              accept="image/*"
-              onChange={handleUploadImage}
-              className="hidden"
-            />
-            <label
-              htmlFor="profileImage"
-              className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded cursor-pointer ml-2 md:ml-0"
-            >
-              Importar Imagen
-            </label>
-          </div>
-        )}
-        {user && (
-          <div className="bg-white rounded-lg shadow-md p-4">
-            <div className="mb-4">
+    <>
+      <NavBarra />
+      <div className="container mx-auto mt-8">
+        <h1 className="text-2xl font-bold mb-4 text-slate-900 text-center">
+          Perfil de Usuario
+        </h1>
+        <div className="flex items-center content-center justify-center gap-44">
+          {user && ( // Verifica que user y user.profile estén definidos
+            <div className="flex flex-col items-center justify-center md:justify-start">
+              <img src={user.profile} alt="User profile" className="rounded-full w-64 h-64 object-cover " />
+              <input
+                type="file"
+                id="profileImage"
+                name="profileImage"
+                accept="image/*"
+                onChange={handleUploadImage}
+                className="hidden"
+              />
               <label
-                className="block text-gray-800 text-sm font-bold mb-2"
-                htmlFor="firstName"
-              >
-                Nombre:
-              </label>
-              {editing ? (
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
-                  id="firstName"
-                  type="text"
-                  name="firstName"
-                  value={editedUser.firstName}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                <p className="text-lg text-gray-800">{user.firstName}</p>
-              )}
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-800 text-sm font-bold mb-2"
-                htmlFor="lastName"
-              >
-                Apellido:
-              </label>
-              {editing ? (
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
-                  id="lastName"
-                  type="text"
-                  name="lastName"
-                  value={editedUser.lastName}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                <p className="text-lg text-gray-800">{user.lastName}</p>
-              )}
-            </div>
-            <div className="mb-4">
-              <label
-                className="block text-gray-800 text-sm font-bold mb-2"
-                htmlFor="email"
-              >
-                Correo:
-              </label>
-              {editing ? (
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
-                  id="email"
-                  type="email"
-                  name="email"
-                  value={editedUser.email}
-                  onChange={handleInputChange}
-                />
-              ) : (
-                <p className="text-lg text-gray-800">{user.email}</p>
-              )}
-            </div>
-            {editing && (
-              <div className="mb-4">
-                <label
-                  className="block text-gray-800 text-sm font-bold mb-2"
-                  htmlFor="password"
-                >
-                  Contraseña:
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
-                  id="password"
-                  type="password"
-                  name="password"
-                  value={editedUser.password}
-                  onChange={handleInputChange}
-                />
-              </div>
-            )}
-            {editing && (
-              <div className="mb-4">
-                <label
-                  className="block text-gray-800 text-sm font-bold mb-2"
-                  htmlFor="confirmPassword"
-                >
-                  Confirmar Contraseña:
-                </label>
-                <input
-                  className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
-                  id="confirmPassword"
-                  type="password"
-                  name="confirmPassword"
-                  value={editedUser.confirmPassword}
-                  onChange={handleInputChange}
-                />
-              </div>
-            )}
-            <div className="mb-4">
-              <label
-                className="block text-gray-800 text-sm font-bold mb-2"
                 htmlFor="profileImage"
+                className="bg-slate-500 my-12 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded cursor-pointer ml-2 md:ml-0"
               >
-                Imagen de Perfil:
+                Importar Imagen
               </label>
             </div>
-            {editing ? (
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-                onClick={handleSaveClick}
-              >
-                Guardar
-              </button>
-            ) : (
-              <button
-                className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
-                onClick={handleEditClick}
-              >
-                Editar
-              </button>
-            )}
-          </div>
-        )}
+          )}
+          {user && (
+            <div className="bg-white rounded-lg shadow-xl py-4 pr-40 pl-4 flex flex-col ">
+              <div className="mb-4">
+                <label
+                  className="block text-gray-800 text-sm font-bold mb-2"
+                  htmlFor="firstName"
+                >
+                  Nombre:
+                </label>
+                {editing ? (
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                    id="firstName"
+                    type="text"
+                    name="firstName"
+                    value={editedUser.firstName}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <p className="text-lg text-gray-800">{user.firstName}</p>
+                )}
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block text-gray-800 text-sm font-bold mb-2"
+                  htmlFor="lastName"
+                >
+                  Apellido:
+                </label>
+                {editing ? (
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                    id="lastName"
+                    type="text"
+                    name="lastName"
+                    value={editedUser.lastName}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <p className="text-lg text-gray-800">{user.lastName}</p>
+                )}
+              </div>
+              <div className="mb-4">
+                <label
+                  className="block text-gray-800 text-sm font-bold mb-2"
+                  htmlFor="email"
+                >
+                  Correo:
+                </label>
+                {editing ? (
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                    id="email"
+                    type="email"
+                    name="email"
+                    value={editedUser.email}
+                    onChange={handleInputChange}
+                  />
+                ) : (
+                  <p className="text-lg text-gray-800">{user.email}</p>
+                )}
+              </div>
+              {editing && (
+                <div className="mb-4">
+                  <label
+                    className="block text-gray-800 text-sm font-bold mb-2"
+                    htmlFor="password"
+                  >
+                    Contraseña:
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                    id="password"
+                    type="password"
+                    name="password"
+                    onChange={handleInputChange}
+                  />
+                </div>
+              )}
+              {editing && (
+                <div className="mb-4">
+                  <label
+                    className="block text-gray-800 text-sm font-bold mb-2"
+                    htmlFor="confirmPassword"
+                  >
+                    Confirmar Contraseña:
+                  </label>
+                  <input
+                    className="shadow appearance-none border rounded w-full py-2 px-3 text-gray-800 leading-tight focus:outline-none focus:shadow-outline"
+                    id="confirmPassword"
+                    type="password"
+                    name="confirmPassword"
+                    onChange={handleInputChange}
+                  />
+                </div>
+              )}
+              <div className="mb-4">
+
+              </div>
+              {editing ? (
+                <button
+                  className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline mr-2"
+                  onClick={handleSaveClick}
+                >
+                  Guardar
+                </button>
+              ) : (
+                <button
+                  className="bg-slate-500 hover:bg-slate-700 text-white font-bold py-2 px-4 w-32 rounded focus:outline-none focus:shadow-outline mr-2"
+                  onClick={handleEditClick}
+                >
+                  Editar
+                </button>
+              )}
+            </div>
+          )}
+        </div>
       </div>
-    </div>
+      <div className="fixed bottom-0 w-full">
+        <MyFooter />
+      </div>
+    </>
+
   );
 };
 

@@ -22,6 +22,9 @@ const Resultados = () => {
             })
     }
     ), []
+    function capitalizeFirstLetter(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    }
 
     if (Loading) {
         return <>
@@ -44,7 +47,8 @@ const Resultados = () => {
                 <NavBarra />
                 <main className='flex flex-col items-center content-center justify-center'>
                     <h1 className='text-4xl lg:text-6xl bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 text-transparent bg-clip-text mt-20 pb-8 text-center font-bold "
-			'>Obtuvimos los siguientes resultados con tu busqueda</h1>
+			'>Obtuvimos los siguientes resultados con tu busqueda:</h1>
+                    <h2 className='ext-2xl lg:text-6xl bg-gradient-to-r from-slate-800 via-slate-600 to-slate-500 text-transparent bg-clip-text  pb-8 text-center'>{capitalizeFirstLetter(search)}</h2>
                     <SearchBar />
 
                     <div className=' mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 '>
