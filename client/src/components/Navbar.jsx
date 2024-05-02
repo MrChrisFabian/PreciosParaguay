@@ -9,7 +9,6 @@ import Logo from "../images/Logo.svg";
 const NavBarra = () => {
   const { user, setUser } = useContext(UserContext);
   const navigate = useNavigate();
-
   const logOutUser = async () => {
     console.log("Cerrando sesión");
     try {
@@ -33,43 +32,60 @@ const NavBarra = () => {
         <img src={Logo} className="mr-3 h-12 sm:h-16" alt="Logo" />
       </Navbar.Brand>
       <ul className="flex justify-center gap-6 items-center">
-
         <Navbar.Link href="#" className="">
           About
         </Navbar.Link>
-        <Dropdown
-          arrowIcon={false}
-          inline
-          label={<Avatar alt="User settings" rounded className="mr-2" />}
-        >
-          {user ? (
-            <>
-              <Dropdown.Header>
-                <span className="block text-sm">
-                  {user.firstName} {user.lastName}
-                </span>
-                <span className="block truncate text-sm font-medium">
-                  {user.email}
-                </span>
-              </Dropdown.Header>
-              <Dropdown.Item href="/WishList">
-                <RiUserLine className="inline-block mr-2" /> WishList
-              </Dropdown.Item>
-              <Dropdown.Item onClick={logOutUser}>
-                <RiLogoutBoxRLine className="inline-block mr-2" /> Logout
-              </Dropdown.Item>
-            </>
-          ) : (
-            <>
-              <Dropdown.Header>
-                <span className="block text-sm">Guest User</span>
-              </Dropdown.Header>
-              <Dropdown.Item href="/login">
-                <RiUserLine className="inline-block mr-2" /> Login
-              </Dropdown.Item>
-            </>
-          )}
-        </Dropdown>
+        {user ? (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar
+                img={user.profile}
+                alt="User settings"
+                rounded
+                className="mr-2"
+              />
+            }
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">
+                {user.firstName} {user.lastName}
+              </span>
+              <span className="block truncate text-sm font-medium">
+                {user.email}
+              </span>
+            </Dropdown.Header>
+            <Dropdown.Item href="/profile">
+              <RiUserLine className="inline-block mr-2" /> Profile
+            </Dropdown.Item>
+            <Dropdown.Item href="/WishList">
+              <RiUserLine className="inline-block mr-2" /> WishList
+            </Dropdown.Item>
+            <Dropdown.Item onClick={logOutUser}>
+              <RiLogoutBoxRLine className="inline-block mr-2" /> Logout
+            </Dropdown.Item>
+          </Dropdown>
+        ) : (
+          <Dropdown
+            arrowIcon={false}
+            inline
+            label={
+              <Avatar
+                alt="Default Avatar"
+                rounded
+                className="mr-2"
+              />
+            }
+          >
+            <Dropdown.Header>
+              <span className="block text-sm">Guest User</span>
+            </Dropdown.Header>
+            <Dropdown.Item href="/login">
+              <RiUserLine className="inline-block mr-2" /> Login
+            </Dropdown.Item>
+          </Dropdown>
+        )}
       </ul>
     </Navbar>
   );

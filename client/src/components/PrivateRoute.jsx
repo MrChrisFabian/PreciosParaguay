@@ -10,7 +10,7 @@ const PrivateRoute = ({ children, redirectPath = "/login" }) => {
     // Simula un retraso antes de verificar el usuario
     const timer = setTimeout(() => {
       setIsChecking(false);
-    }, 1000); // Ajusta el tiempo de espera según sea necesario
+    }, 100); // Ajusta el tiempo de espera según sea necesario
 
     return () => clearTimeout(timer);
   }, []);
@@ -22,4 +22,8 @@ const PrivateRoute = ({ children, redirectPath = "/login" }) => {
   return user ? children : <Navigate to={redirectPath} replace />;
 };
 
+<<<<<<< HEAD
 export default PrivateRoute;
+=======
+export default PrivateRoute;
+>>>>>>> 68f2bac48ef29361c20d495b7f61617ad2f14a40
