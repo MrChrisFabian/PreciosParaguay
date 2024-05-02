@@ -1,8 +1,30 @@
-const { UserModel } = require('../models/user.model')
+const { UserModel } = require('../models/user.model');
 const bcrypt = require('bcrypt');
 const jwt = require('jsonwebtoken');
 
 module.exports = {
+
+    updateUserById: async (req, res) => {
+        const userId = req.params.id;
+        const updatedUserData = req.body; // Datos actualizados del usuario enviados por el cliente
+
+        // Verificar si se está actualizando la contraseña
+        if (updatedUserData.password) {
+            // Hashear la nueva contraseña
+            const hashedPassword = await bcrypt.hash(updatedUserData.password, 10);
+            updatedUserData.password = hashedPassword;
+        }
+
+        UserModel.findByIdAndUpdate(userId, updatedUserData, { new: true })
+            .then(updatedUser => {
+                if (!updatedUser) {
+                    return res.status(404).json({ msg: 'User not found' });
+                }
+                res.status(200).json({ msg: 'User updated successfully', user: updatedUser });
+            })
+            .catch(err => res.status(500).json({ error: err }));
+    },
+
     register: (req, res) => {
         const user = new UserModel(req.body);
         user
@@ -61,4 +83,5 @@ module.exports = {
             })
             .catch(err => res.status(401).json({ error: err }));
     }
+
 }

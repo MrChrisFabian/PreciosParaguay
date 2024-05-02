@@ -7,5 +7,7 @@ const UserRouter = express.Router();
 UserRouter.post("/register", UserController.register);
 UserRouter.post("/login", UserController.login);
 UserRouter.post("/logout", UserController.logout);
+UserRouter.put("/:id", UserController.updateUserById);
+
 
 module.exports = UserRouter

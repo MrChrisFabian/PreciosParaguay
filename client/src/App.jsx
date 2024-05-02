@@ -7,6 +7,7 @@ import Footer from "./components/Footer";
 import Navbar from "./components/Navbar";
 import LandingPage from "./views/LandingPage";
 import ProductsP from "./views/Products";
+import Profile from "./components/Profile";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             />
             <Route path="/" element={<LandingPage />} />{" "}
             <Route path="/products" element={<ProductsP />} />
+            <Route path="/profile" element={<Profile />} />
           </Routes>
         </div>
         <Footer />
