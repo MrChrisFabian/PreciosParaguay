@@ -9,6 +9,7 @@ const LoginRegister = () => {
   };
 
   return (
+    <div class="absolute inset-0 -z-10 h-full w-full bg-white bg-[radial-gradient(#e5e7eb_1px,transparent_1px)] [background-size:16px_16px]">
     <div className="flex flex-col items-center min-h-screen">
       <div className="mx-auto max-w-lg overflow-y-auto">
         <div className="space-y-4 rounded-lg p-4 shadow-lg sm:p-6 lg:p-8">
@@ -47,7 +48,7 @@ const LoginRegister = () => {
           )}
         </div>
       </div>
-    </div>
+    </div></div>
   );
 };
 
