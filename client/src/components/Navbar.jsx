@@ -56,6 +56,9 @@ const NavBarra = () => {
                 {user.email}
               </span>
             </Dropdown.Header>
+            <Dropdown.Item href="/profile">
+              <RiUserLine className="inline-block mr-2" /> Profile
+            </Dropdown.Item>
             <Dropdown.Item href="/WishList">
               <RiUserLine className="inline-block mr-2" /> WishList
             </Dropdown.Item>
