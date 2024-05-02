@@ -45,7 +45,9 @@ const Resultados = () => {
                 <main className='flex flex-col items-center content-center justify-center'>
                     <h1 className='text-4xl lg:text-6xl bg-gradient-to-r from-slate-600 via-slate-700 to-slate-800 text-transparent bg-clip-text mt-20 pb-8 text-center font-bold "
 			'>Obtuvimos los siguientes resultados con tu busqueda</h1>
-                    <div className=' grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 '>
+                    <SearchBar />
+
+                    <div className=' mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 '>
                         {searchResults.map((product) => (
                             <div key={product._id}>
                                 <ProductsP key={product._id} image_url={product.image_url} url={product.url} title={product.title} price={product.price} id={product._id}></ProductsP>

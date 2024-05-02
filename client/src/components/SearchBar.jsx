@@ -4,6 +4,7 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function SearchBar() {
+  const [clicked, setClicked] = useState(false)
   const [searchTerm, setSearchTerm] = useState("");
   const [searchResults, setSearchResults] = useState([]);
   const navigate = useNavigate();
@@ -28,6 +29,8 @@ function SearchBar() {
       // Prevent default behavior (navigation)
       event.preventDefault();
       navigate(`/busqueda/${searchTerm}`);
+      setClicked(true)
+      setSearchTerm("");
     }
   };
   useEffect(() => {
@@ -54,7 +57,7 @@ function SearchBar() {
         </span>
       </div>
       {/* resultados list */}
-      <div className="max-h-screen overflow-y-auto">
+      <div className={`${clicked ? 'hidden' : ''} max-h-screen overflow-y-auto`}>
         {searchResults.length > 0 && (
           <div className="absolute mt-2 bg-white shadow-md border border-gray-200 rounded-lg">
             {searchResults.map((product) => (
