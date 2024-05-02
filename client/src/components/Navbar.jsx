@@ -3,7 +3,8 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import Logo from "../images/Logo.svg"; 
+import { RiUserLine, RiLogoutBoxRLine } from "react-icons/ri"; // Importa los iconos que necesitas
+import Logo from "../images/Logo.svg";
 
 const Component = () => {
   const { user, setUser } = useContext(UserContext);
@@ -27,7 +28,7 @@ const Component = () => {
   };
 
   return (
-    <Navbar rounded >
+    <Navbar rounded className="bg-slate-400 shadow-lg">
       <Navbar.Brand href="">
         <img src={Logo} className="mr-3 h-12 sm:h-16" alt="Logo" />
       </Navbar.Brand>
@@ -53,14 +54,21 @@ const Component = () => {
                   {user.email}
                 </span>
               </Dropdown.Header>
-              <Dropdown.Item onClick={logOutUser}>Logout</Dropdown.Item>
+              <Dropdown.Item href="/WishList">
+                <RiUserLine className="inline-block mr-2" /> WishList
+              </Dropdown.Item>
+              <Dropdown.Item onClick={logOutUser}>
+                <RiLogoutBoxRLine className="inline-block mr-2" /> Logout
+              </Dropdown.Item>
             </>
           ) : (
             <>
               <Dropdown.Header>
                 <span className="block text-sm">Guest User</span>
               </Dropdown.Header>
-              <Dropdown.Item href="/login">Login</Dropdown.Item>
+              <Dropdown.Item href="/login">
+                <RiUserLine className="inline-block mr-2" /> Login
+              </Dropdown.Item>
             </>
           )}
         </Dropdown>
