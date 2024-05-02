@@ -4,8 +4,9 @@ import { UserProvider } from "./context/UserContext";
 import PrivateRoute from "./components/PrivateRoute";
 import PublicRoute from "./components/PublicRoute";
 import LandingPage from "./views/LandingPage";
-import ProductsP from "./components/Products";
-import Resultados from "./views/Resultados";
+import ProductsP from "./views/Products";
+import Profile from "./components/Profile";
+import WishlistView from "./views/WishlistView";
 
 function App() {
   return (
