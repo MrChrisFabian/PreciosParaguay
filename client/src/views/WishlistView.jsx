@@ -48,7 +48,7 @@ const WishlistView = () => {
       <section className="text-gray-600 body-font bg-white ">
         <div className="container px-5 py-24 mx-auto flex">
           <div className="w-full p-4">
-            <h2 className="text-3xl font-bold mb-4">Wishlist</h2>
+            <h2 className="text-3xl font-bold mb-4 text-center">Wishlist</h2>
             {wishlist.length === 0 ? (
               <p>No items in wishlist</p>
             ) : (
@@ -58,10 +58,24 @@ const WishlistView = () => {
                     key={product._id}
                     className="flex items-center justify-between border-b border-gray-200 py-2"
                   >
-                    <div>
-                      <h3 className="text-lg font-bold">{product.title}</h3>
-                      <span className="text-gray-500">{product.price} Gs</span>
-                    </div>
+                    <div className="flex items-center space-x-4">
+                      <img
+                        src={product.image_url}
+                        alt={product.title}
+                        className="w-16 h-16 rounded-full"
+                      />
+                      <div className="flex flex-col">
+                        <a
+                          href={product.url}
+                          className="text-lg font-bold hover:underline"
+                        >
+                          {product.title}
+                        </a>
+                        <span className="text-gray-500">
+                          {product.price} Gs
+                        </span>
+                      </div>
+                    </div>{" "}
                     <button
                       onClick={() => removeFromWishlist(product._id)}
                       className="text-red-500 hover:text-red-700"

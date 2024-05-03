@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
-import { Avatar } from "flowbite-react"; // Importa el componente Avatar
 import NavBarra from "./Navbar";
 import MyFooter from "./Footer";
+import profileImage from "../images/defaultprofile.png";
+
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
-  const [imageurl, setImageurl] = useState(user.profile);
   const [editing, setEditing] = useState(false);
   const [editedUser, setEditedUser] = useState({
     ...user,
@@ -87,9 +87,9 @@ const Profile = () => {
           Perfil de Usuario
         </h1>
         <div className="flex items-center content-center justify-center gap-44">
-          {user && ( // Verifica que user y user.profile estén definidos
+          {user && (
             <div className="flex flex-col items-center justify-center md:justify-start">
-              <img src={user.profile} alt="User profile" className="rounded-full w-64 h-64 object-cover " />
+              <img src={user.profile || profileImage} alt="User profile" className="rounded-full w-64 h-64 object-cover" />
               <input
                 type="file"
                 id="profileImage"
