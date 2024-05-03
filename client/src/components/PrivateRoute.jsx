@@ -1,13 +1,25 @@
+import React, { useContext, useState, useEffect } from "react";
 import { Navigate } from "react-router-dom";
-import {UserContext} from '../context/UserContext';
-import { useContext } from "react";
+import { UserContext } from "../context/UserContext";
 
-const PublicRoute = (props) => {
-    const { redirectPath = "/login", children } = props;
-    const { user } = useContext(UserContext);
+const PrivateRoute = ({ children, redirectPath = "/login" }) => {
+  const { user } = useContext(UserContext);
+  const [isChecking, setIsChecking] = useState(true);
 
-    return <>{!user ? <Navigate to={redirectPath} replace /> : children}</>;
+  useEffect(() => {
+    // Simula un retraso antes de verificar el usuario
+    const timer = setTimeout(() => {
+      setIsChecking(false);
+    }, 100); // Ajusta el tiempo de espera según sea necesario
+
+    return () => clearTimeout(timer);
+  }, []);
+
+  if (isChecking) {
+    return <div>Cargando...</div>; // O cualquier otro indicador de carga
+  }
+
+  return user ? children : <Navigate to={redirectPath} replace />;
 };
 
-
-export default PublicRoute
+export default PrivateRoute;

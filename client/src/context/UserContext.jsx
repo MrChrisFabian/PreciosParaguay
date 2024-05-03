@@ -1,25 +1,39 @@
-import React, { createContext, useState } from "react";
+import React, { createContext, useState, useEffect } from "react";
 
 const UserContext = createContext();
 
 const UserProvider = ({ children }) => {
+  const [user, setUser] = useState(null);
+
+  useEffect(() => {
     const userDetails = JSON.parse(localStorage.getItem("user"));
-    const initialUserState = userDetails ? userDetails : null;
-    const [user, setUser] = useState(initialUserState);
+    if (userDetails) {
+      setUser(userDetails);
+    }
+  }, []);
 
-    const setUserKeyValue = (clave, valor) => {
-        setUser({ ...user, [clave]: valor });
-    };
+  const setUserKeyValue = (clave, valor) => {
+    setUser((prevUser) => ({ ...prevUser, [clave]: valor }));
+    localStorage.setItem("user", JSON.stringify({ ...user, [clave]: valor }));
+  };
 
-    const contextValue = {
-        user,
-        setUser,
-        setUserKeyValue,
-    };
+  const getUserId = () => {
+    return user ? user._id : null; // Suponiendo que el ID del usuario está en la propiedad _id
+  };
 
-    return (
-        <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
-    );
+  const contextValue = {
+    user,
+    setUser: (userData) => {
+      setUser(userData);
+      localStorage.setItem("user", JSON.stringify(userData));
+    },
+    setUserKeyValue,
+    getUserId,
+  };
+
+  return (
+    <UserContext.Provider value={contextValue}>{children}</UserContext.Provider>
+  );
 };
 
 export { UserContext, UserProvider };

@@ -1,39 +1,86 @@
-import React from "react";
-import { Dropdown } from "flowbite-react";
-import { FiSearch } from "react-icons/fi";
+import React, { useState, useEffect } from "react";
+import { FaSearch } from "react-icons/fa";
+import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
-const SearchBar = () => {
+function SearchBar() {
+  const [clicked, setClicked] = useState(false)
+  const [searchTerm, setSearchTerm] = useState("");
+  const [searchResults, setSearchResults] = useState([]);
+  const navigate = useNavigate();
+
+  const fetchSearchResults = async () => {
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/search?searchTerm=${searchTerm}`
+      );
+      setSearchResults(response.data.products);
+    } catch (error) {
+      console.error("Error fetching search results:", error);
+    }
+  };
+
+  const handleChange = (event) => {
+    setSearchTerm(event.target.value);
+  };
+
+  const handleKeyDown = (event) => {
+    if (event.key === "Enter" && searchTerm.trim() !== "") {
+      // Prevent default behavior (navigation)
+      event.preventDefault();
+      navigate(`/busqueda/${searchTerm}`);
+      setClicked(true)
+      setSearchTerm("");
+    }
+  };
+  useEffect(() => {
+    if (searchTerm.trim() !== "") {
+      fetchSearchResults();
+    } else {
+      setSearchResults([]);
+    }
+  }, [searchTerm]);
+
   return (
-    <form className="max-w-lg mx-auto">
-      <div className="flex">
-        <div className="p-2.5 bg-blue-700 rounded-l-lg">
-          <Dropdown inline label="Categorias" dismissOnClick={false}>
-            <Dropdown.Item>Todos</Dropdown.Item>
-            <Dropdown.Item>Mouses</Dropdown.Item>
-            <Dropdown.Item>Teclados</Dropdown.Item>
-            <Dropdown.Item>Auriculares</Dropdown.Item>
-            <Dropdown.Item>Notebooks</Dropdown.Item>
-          </Dropdown>
-        </div>
-        <div className="relative w-full">
-          <input
-            type="search"
-            id="search"
-            className="block p-2.5 w-full z-20 text-gray-900 rounded-r-lg"
-            placeholder="Buscar Productos"
-            required
-          />
-          <button
-            type="submit"
-            className="absolute top-0 right-0 p-2.5 h-full text-white bg-blue-700 rounded-r-lg"
-          >
-            <FiSearch className="w-4 h-4" />
-            <span className="sr-only">Search</span>
-          </button>
-        </div>
+    <div className="relative">
+      <div>
+        <input
+          type="text"
+          value={searchTerm}
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          placeholder="Buscar producto"
+          className=" md:w-96 rounded-lg hover:border-blue-500 text-black"
+        />
+        <span>
+          <FaSearch className="absolute right-3 top-3 text-gray-400 hover:text-blue-500" />
+        </span>
       </div>
-    </form>
+      {/* resultados list */}
+      <div className={`${clicked ? 'hidden' : ''} max-h-screen overflow-y-auto`}>
+        {searchResults.length > 0 && (
+          <div className="absolute mt-2 bg-white shadow-md border border-gray-200 rounded-lg">
+            {searchResults.slice(0,6).map((product) => (
+              <a
+                target="_blank"
+                href={product.url}
+                key={product._id}
+                className="p-2 hover:text-slate-800 hover:underline hover:border border-black cursor-pointer text-black block"
+                onClick={() => {
+                  navigate(`/busqueda/${searchTerm}`);
+                  setSearchTerm("");
+                }}
+              >
+                {product.title}
+              </a>
+            ))}
+          </div>
+        )}
+
+      </div>
+    </div>
+
   );
-};
+}
 
 export default SearchBar;
