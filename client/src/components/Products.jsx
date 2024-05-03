@@ -72,7 +72,7 @@ const ProductsP = ({ title, price, url, image_url, id }) => {
   return (
     <div class=" flex flex-col w-full h-full max-w-sm  border border-gray-200 rounded-lg shadow-lg  dark:border-gray-700">
       <img class=" rounded-t-lg" src={image_url} alt={title} />
-      <div className=" p-4">
+      <div className=" p-4  bg-white">
         <div class="px-5 pb-5 ">
           <h5 class="text-xl font-semibold tracking-tight text-gray-900 dark:text-white">{title}</h5>
         </div>

@@ -3,7 +3,8 @@ import { useContext } from "react";
 import { UserContext } from "../context/UserContext";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
-import { RiUserLine, RiLogoutBoxRLine } from "react-icons/ri"; // Importa los iconos que necesitas
+import { RiUserLine, RiLogoutBoxRLine } from "react-icons/ri";
+import { CiHeart } from "react-icons/ci";
 import Logo from "../images/Logo.svg";
 
 const NavBarra = () => {
@@ -60,7 +61,7 @@ const NavBarra = () => {
               <RiUserLine className="inline-block mr-2" /> Profile
             </Dropdown.Item>
             <Dropdown.Item href="/WishList">
-              <RiUserLine className="inline-block mr-2" /> WishList
+              <CiHeart className="inline-block mr-2" /> WishList
             </Dropdown.Item>
             <Dropdown.Item onClick={logOutUser}>
               <RiLogoutBoxRLine className="inline-block mr-2" /> Logout
