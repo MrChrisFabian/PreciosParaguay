@@ -12,5 +12,8 @@ La web que todos necesitamos, enfocada a optimizar tu tiempo a la hora de realiz
 
   
 - Conoce de que tiendas se obtienen los datos
+  ![image](https://github.com/MrChrisFabian/PreciosParaguay/assets/146046957/02013077-2d69-41cd-8b55-68532d5c1694)
+
+  
 
 Proyecto Funcionando en base a [Precios Py Crawler 🕷️🐍](https://github.com/mrChrisFabian/preciosPyCrawler)
